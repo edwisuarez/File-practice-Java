@@ -11,53 +11,18 @@ public class entry {
     public static void main(String[] args)
     {
 
+        Scanner scanArchivo = new Scanner(System.in);
+        System.out.print("Bienvenido al sistema de archivos, ingresa el nombre del archivo que desea crear: ");
+        String fileName = scanArchivo.nextLine();
+        CreateFile createFile = new CreateFile(fileName);
 
-        try
-        {
-            File archivo = new File("LoveMessage.txt");
-            if (archivo.createNewFile())
-            {
-                System.out.println("File created: " + archivo.getName());
-            }
-            else
-            {
-                System.out.println("File already exists");
-            }
-        }
-        catch (IOException e)
-        {
-            System.out.println("Error creating file");
-            e.printStackTrace();
-        }
+        System.out.print("Digite el nombre del archivo que desea editar: ");
+        String nameFile = scanArchivo.nextLine();
+        WriteFile writeFile = new WriteFile();
+        writeFile.WriteFileWithMessage(nameFile);
 
-        try {
-            Scanner scan = new Scanner(System.in);
-            FileWriter fileWriter = new FileWriter("LoveMessage.txt");
-            System.out.println("Ingrese su mensaje: ");
-            String message = scan.nextLine();
-            fileWriter.write(message);
-            fileWriter.close();
-
-            System.out.println("File wrote successfully");
-        } catch (IOException e) {
-            System.out.println("Error while writing file");
-            e.printStackTrace();
-        }
-
-        try{
-            File myFile = new File("LoveMessage.txt");
-            Scanner scanner = new Scanner(myFile);
-
-            while(scanner.hasNextLine())
-            {
-                String data = scanner.nextLine();
-                System.out.println(data);
-            }
-
-        }catch(FileNotFoundException e){
-            System.out.println("Not Found File");
-            e.printStackTrace();
-        }
+        ReadFile readFile = new ReadFile();
+        readFile.readFileTXT(nameFile);
 
     }
 
